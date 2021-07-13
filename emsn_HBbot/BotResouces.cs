@@ -8,5 +8,9 @@ namespace emsn_HBbot
 {
     class BotResouces
     {
+        internal static void loadStructures()
+        {
+            
+        }
     }
 }
