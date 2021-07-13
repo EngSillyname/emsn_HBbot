@@ -2,7 +2,7 @@
 
 namespace HBbot
 {
-    class Program
+    class Bot
     {
         static void Main(string[] args)
         {

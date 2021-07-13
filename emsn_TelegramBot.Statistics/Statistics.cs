@@ -2,7 +2,7 @@
 
 namespace emsn_HBbot.Statistics
 {
-    public class Class1
+    public class Statistics
     {
     }
 }

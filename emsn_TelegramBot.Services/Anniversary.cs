@@ -2,7 +2,7 @@
 
 namespace emsn_HBbot.Services
 {
-    public class Class1
+    public class Anniversary
     {
     }
 }

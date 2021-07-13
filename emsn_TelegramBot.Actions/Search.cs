@@ -2,7 +2,7 @@
 
 namespace emsn_HBbot.Actions
 {
-    public class Class1
+    public class Search
     {
     }
 }

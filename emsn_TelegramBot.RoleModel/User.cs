@@ -2,7 +2,7 @@
 
 namespace emsn_HBbot.RoleModel
 {
-    public class Class1
+    public class User
     {
     }
 }
