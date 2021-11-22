@@ -7,7 +7,7 @@ namespace emsn_TelegramBot.DB.MySQL
     /// <summary>
     /// Класс основных сущностей как предметной области бота так и системных
     /// </summary>
-    class Entities
+    public class Entities
     {
         /// <summary>
         /// Пользователь бота
@@ -128,6 +128,8 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Оповещение, привязанное к временному интервалу
             /// </summary>
             [Key]
+            public int timeModeSetID { get; set; }
+            [ForeignKey("timeModeSetID")]
             public Alert alert { get; set; }
             /// <summary>
             /// Временной интервал, привязанный к оповещению
@@ -250,7 +252,9 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор именинника (пользователя бота)
             /// </summary>
             [Key]
-            public BirthdayUser birthdayUser { get; set; }
+            public int birthdayUserID { get ; set; }
+            [ForeignKey("birthdayUserID")]
+            public BirthdayUser BirthdayUser { get; set; }
             /// <summary>
             /// Название желания
             /// </summary>
@@ -304,7 +308,9 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор именинника (или пользователя бота), привязанного к хобби
             /// </summary>
             [Key]
-            public BirthdayUser birthdayUser { get; set; }
+            public int hobbieSetID { get; set; }
+            [ForeignKey("hobbieSetID")]
+            public BirthdayUser BirthdayUser { get; set; }
             /// <summary>
             /// Идентификатор хобби, привязанному к имениннику (или пользователю бота)
             /// </summary>
