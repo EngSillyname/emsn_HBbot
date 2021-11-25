@@ -49,7 +49,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// <summary>
         /// Набор оповещений для пользователя 
         /// </summary>
-        [Table("alertSet")]
+        [Table("alert_set")]
         public class AlertSet
         {
             /// <summary>
@@ -98,7 +98,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// <summary>
         /// Временной интервал цикла оповещений
         /// </summary>
-        [Table("timeMode")]
+        [Table("time_mode")]
         public class TimeMode
         {
             /// <summary>
@@ -115,13 +115,13 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Краткое описание/сокращение интервала
             /// </summary>
             [Required, MaxLength(255)]
-            public byte[] description { get; set; }
+            public string description { get; set; }
         }
 
         /// <summary>
         /// Набор временных интервалов, привязанных к оповещениям
         /// </summary>
-        [Table("timeModeSet")]
+        [Table("time_mode_set")]
         public class TimeModeSet
         {
             /// <summary>
@@ -158,7 +158,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Совершенное действие
             /// </summary>
             [Required, MaxLength(255)]
-            public byte[] action { get; set; }
+            public string action { get; set; }
             /// <summary>
             /// Разница данных
             /// </summary>
@@ -172,7 +172,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// <summary>
         /// Именинник
         /// </summary>
-        [Table("birthdayUser")]
+        [Table("birthday_user")]
         public class BirthdayUser
         {
             /// <summary>
@@ -199,7 +199,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// <summary>
         /// Список именинников
         /// </summary>
-        [Table("birthdayUserList")]
+        [Table("birthday_user_list")]
         public class BirthdayUserList
         {
             /// <summary>
@@ -222,7 +222,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// <summary>
         /// Набор списков именинников, привязанных к пользователю
         /// </summary>
-        [Table("birthdayUserListSet")]
+        [Table("birthday_user_list_set")]
         public class BirthdayUserListSet
         {
             /// <summary>
@@ -301,7 +301,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// <summary>
         /// Набор хобби, привязанных к имениннику
         /// </summary>
-        [Table("hobbieSet")]
+        [Table("hobbie_set")]
         public class HobbieSet
         {
             /// <summary>

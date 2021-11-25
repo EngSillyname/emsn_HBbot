@@ -28,6 +28,7 @@ namespace emsn_TelegramBot.DB.MySQL
 
         public DataBaseConfig()
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
