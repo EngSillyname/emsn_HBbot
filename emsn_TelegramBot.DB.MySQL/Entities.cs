@@ -26,14 +26,13 @@ namespace emsn_TelegramBot.DB.MySQL
             /// <summary>
             /// Код авторизации от бота
             /// </summary>
-            [Required, MaxLength(4)]
+            [Required]
             public string authCode { get; set; }
             /// <summary>
             /// Роль пользователя с точки зрения функционала
             /// </summary>
             [Required]
             public Role role { get; set; }
-
         }
 
         /// <summary>
@@ -303,7 +302,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// <summary>
             /// Наименование хобби
             /// </summary>
-            [Required]
+            [Required, MaxLength(300)]
             public string name { get; set; }
             /// <summary>
             /// Популярность хобби (0-100% или место в статистике-отчете)
