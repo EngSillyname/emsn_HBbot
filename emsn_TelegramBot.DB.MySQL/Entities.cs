@@ -9,6 +9,9 @@ namespace emsn_TelegramBot.DB.MySQL
     /// </summary>
     public class Entities
     {
+
+        #region Основные сущности
+
         /// <summary>
         /// Пользователь бота
         /// </summary>
@@ -34,18 +37,81 @@ namespace emsn_TelegramBot.DB.MySQL
         }
 
         /// <summary>
-        /// Роль пользователя в соответствии с ролевой моделью
+        /// Именинник
         /// </summary>
-        [Table("role")]
-        public class Role
+        [Table("birthday_user")]
+        public class BirthdayUser
         {
             /// <summary>
-            /// Наименование роли пользователя в системе
+            /// Идентификатор именинника
             /// </summary>
-            [Key, MaxLength(15)]
-            public string roleName { get; set; }
+            [Key]
+            public int birthdayUserID { get; set; }
+            /// <summary>
+            /// Идентификатор пользователя Telegram (если существует)
+            /// </summary>
+            public User user { get; set; }
+            /// <summary>
+            /// ФИО или понятное пользователю имя именинника
+            /// </summary>
+            [Required, MaxLength(100)]
+            public string strongName { get; set; }
+            /// <summary>
+            /// Дата рождения (ДД\ММ\ГГГГ или ДД\ММ)
+            /// </summary>
+            [Required, Timestamp]
+            public DateTime dateOfBirth { get; set; }
         }
 
+        /// <summary>
+        /// Список именинников
+        /// </summary>
+        [Table("birthday_user_list")]
+        public class BirthdayUserList
+        {
+            /// <summary>
+            /// Идентификатор списка именинников
+            /// </summary>
+            [Key]
+            public int birthdayUserListID { get; set; }
+            /// <summary>
+            /// Идентификатор имменинника
+            /// </summary>
+            [Required]
+            public BirthdayUser birthdayUser { get; set; }
+            /// <summary>
+            /// Наименование списка
+            /// </summary>
+            [Required, MaxLength(30)]
+            public string name { get; set; }
+        }
+
+        /// <summary>
+        /// Набор списков именинников, привязанных к пользователю
+        /// </summary>
+        [Table("birthday_user_list_set")]
+        public class BirthdayUserListSet
+        {
+            /// <summary>
+            /// Идентификатор набора списков именинников
+            /// </summary>
+            [Key]
+            public int birthdayUserListSetID { get; set; }
+            /// <summary>
+            /// Идентификатор списка именинников
+            /// </summary>
+            [Required]
+            public BirthdayUserList birthdayUserList { get; set; }
+            /// <summary>
+            /// Идентификатор пользователя бота
+            /// </summary>
+            [Required]
+            public User user { get; set; }
+        }
+
+        #endregion Основные сущности
+
+        #region Оповещения
         /// <summary>
         /// Набор оповещений для пользователя 
         /// </summary>
@@ -93,6 +159,23 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Список пользователей, проверяемых при определении списка именинников
             /// </summary>
             public BirthdayUserList birthdayUserList { get; set; }
+        }
+
+        #endregion Оповещения
+
+        #region Технические и системные параметры
+
+        /// <summary>
+        /// Роль пользователя в соответствии с ролевой моделью
+        /// </summary>
+        [Table("role")]
+        public class Role
+        {
+            /// <summary>
+            /// Наименование роли пользователя в системе
+            /// </summary>
+            [Key, MaxLength(15)]
+            public string roleName { get; set; }
         }
 
         /// <summary>
@@ -169,78 +252,9 @@ namespace emsn_TelegramBot.DB.MySQL
             public User user { get; set; }
         }
 
-        /// <summary>
-        /// Именинник
-        /// </summary>
-        [Table("birthday_user")]
-        public class BirthdayUser
-        {
-            /// <summary>
-            /// Идентификатор именинника
-            /// </summary>
-            [Key]
-            public int birthdayUserID { get; set; }
-            /// <summary>
-            /// Идентификатор пользователя Telegram (если существует)
-            /// </summary>
-            public User user { get; set; }
-            /// <summary>
-            /// ФИО или понятное пользователю имя именинника
-            /// </summary>
-            [Required, MaxLength(100)]
-            public string strongName { get; set; }
-            /// <summary>
-            /// Дата рождения (ДД\ММ\ГГГГ или ДД\ММ)
-            /// </summary>
-            [Required, Timestamp]
-            public DateTime dateOfBirth { get; set; }
-        }
+        #endregion Технические и системные параметры
 
-        /// <summary>
-        /// Список именинников
-        /// </summary>
-        [Table("birthday_user_list")]
-        public class BirthdayUserList
-        {
-            /// <summary>
-            /// Идентификатор списка именинников
-            /// </summary>
-            [Key]
-            public int birthdayUserListID { get; set; }
-            /// <summary>
-            /// Идентификатор имменинника
-            /// </summary>
-            [Required]
-            public BirthdayUser birthdayUser { get; set; }
-            /// <summary>
-            /// Наименование списка
-            /// </summary>
-            [Required, MaxLength(30)]
-            public string name { get; set; }
-        }
-
-        /// <summary>
-        /// Набор списков именинников, привязанных к пользователю
-        /// </summary>
-        [Table("birthday_user_list_set")]
-        public class BirthdayUserListSet
-        {
-            /// <summary>
-            /// Идентификатор набора списков именинников
-            /// </summary>
-            [Key]
-            public int birthdayUserListSetID { get; set; }
-            /// <summary>
-            /// Идентификатор списка именинников
-            /// </summary>
-            [Required]
-            public BirthdayUserList birthdayUserList { get; set; }
-            /// <summary>
-            /// Идентификатор пользователя бота
-            /// </summary>
-            [Required]
-            public User user { get; set; }
-        }
+        #region Для именинника
 
         /// <summary>
         /// Желание именинника
@@ -318,5 +332,6 @@ namespace emsn_TelegramBot.DB.MySQL
             public Hobbie hobbie { get; set; }
         }
 
+        #endregion Для именинника
     }
 }
