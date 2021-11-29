@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace emsn_HBbot.Actions
+namespace emsn_TelegramBot.Actions
 {
     public class Search
     {

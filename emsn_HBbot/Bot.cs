@@ -1,14 +1,16 @@
-﻿using emsn_HBbot;
-using emsn_TelegramBot.DB.MySQL;
+﻿using emsn_TelegramBot.DB.MySQL;
+using emsn_TelegramBot.Statistics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Telegram.Bot;
 
-namespace HBbot
+namespace emsn_TelegramBot
 {
     class Bot
     {
+        
         static string API_TOKEN = Environment.GetEnvironmentVariable("API_TOKEN");
         static ITelegramBotClient botClient;
         static void Main(string[] args)
@@ -31,7 +33,8 @@ namespace HBbot
             botClient.OnMessage += BotClient_OnMessage;
 
             //Запуск
-            BotResouces.loadStructures();
+
+            BotResources.loadStructures();
             botClient.StartReceiving();
 
             //Простой работы
@@ -63,7 +66,18 @@ namespace HBbot
                 {
                     case "start":
                         {
-                            
+                            using(DataBaseConfig dataBase = new DataBaseConfig())
+                            {
+                                if (dataBase.Users.ToList().Any(user => user.userID == e.Message.Chat.Id))
+                                    ShortMessage.Send(e.Message.Chat.Id, "Здравствуйте, " + e.Message.From.Username);
+                                else
+                                {
+                                    ShortMessage.Send(e.Message.Chat.Id, "Здравствуйте, " + e.Message.From.Username);
+                                    ShortMessage.Send(e.Message.Chat.Id, BotResources.Strings["start"][new BotResources().Strings["start"].Count + 1]);
+                                }
+                                    
+
+                            }
                         }
                         break;
                     default:

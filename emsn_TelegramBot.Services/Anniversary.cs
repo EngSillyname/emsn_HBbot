@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace emsn_HBbot.Services
+namespace emsn_TelegramBot.Services
 {
     public class Anniversary
     {

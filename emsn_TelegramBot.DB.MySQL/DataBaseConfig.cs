@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace emsn_TelegramBot.DB.MySQL
 {
@@ -7,9 +8,9 @@ namespace emsn_TelegramBot.DB.MySQL
     {
 
         string CONNECTION_STRING = Environment.GetEnvironmentVariable("CONNECTION_STRING");
-
+        
         #region set DB entities
-        public DbSet<Entities.Alert> Alerts { get; set; }
+        public static DbSet<Entities.Alert> Alerts { get; set; }
         public DbSet<Entities.AlertSet> AlertSets { get; set; }
         public DbSet<Entities.BirthdayUser> BirthdayUsers { get; set; }
         public DbSet<Entities.BirthdayUserList> BirthdayUserLists { get; set; }
@@ -22,6 +23,7 @@ namespace emsn_TelegramBot.DB.MySQL
         public DbSet<Entities.TimeMode> TimeModes { get; set; }
         public DbSet<Entities.TimeModeSet> TimeModeSets { get; set; }
         public DbSet<Entities.User> Users { get; set; }
+
         #endregion set DB entities
 
         #region Create and Config DB

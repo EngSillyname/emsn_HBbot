@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace emsn_HBbot.Statistics
+namespace emsn_TelegramBot.Statistics
 {
     public class Statistics
     {

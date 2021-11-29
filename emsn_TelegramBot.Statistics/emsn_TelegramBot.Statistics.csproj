@@ -8,4 +8,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\emsn_TelegramBot.DB.MySQL\emsn_TelegramBot.DB.MySQL.csproj" />
+    <ProjectReference Include="..\emsn_TelegramBot.RoleModel\emsn_TelegramBot.RoleModel.csproj" />
+  </ItemGroup>
+
 </Project>

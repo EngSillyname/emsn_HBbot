@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace emsn_HBbot.RoleModel
+namespace emsn_TelegramBot.RoleModel
 {
     public class User
     {

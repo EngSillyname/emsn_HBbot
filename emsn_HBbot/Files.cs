@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace emsn_HBbot
+namespace emsn_TelegramBot
 {
-    class File
+    class Files
     {
     }
 }
