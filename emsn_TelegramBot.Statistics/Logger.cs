@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace emsn_TelegramBot.Statistics
 {
-    public class Logger : Entities.Log
+    public class Logger : Entity.Log
     {
         public static bool Add(string actionName, string difference = null, User user = null)
         {

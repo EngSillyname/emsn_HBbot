@@ -10,19 +10,19 @@ namespace emsn_TelegramBot.DB.MySQL
         string CONNECTION_STRING = Environment.GetEnvironmentVariable("CONNECTION_STRING");
         
         #region set DB entities
-        public static DbSet<Entities.Alert> Alerts { get; set; }
-        public DbSet<Entities.AlertSet> AlertSets { get; set; }
-        public DbSet<Entities.BirthdayUser> BirthdayUsers { get; set; }
-        public DbSet<Entities.BirthdayUserList> BirthdayUserLists { get; set; }
-        public DbSet<Entities.BirthdayUserListSet> BirthdayUserListSets { get; set; }
-        public DbSet<Entities.Desire> Desires { get; set; }
-        public DbSet<Entities.Hobbie> Hobbies { get; set; }
-        public DbSet<Entities.HobbieSet> HobbieSets { get; set; }
-        public DbSet<Entities.Log> Logs { get; set; }
-        public DbSet<Entities.Role> Roles { get; set; }
-        public DbSet<Entities.TimeMode> TimeModes { get; set; }
-        public DbSet<Entities.TimeModeSet> TimeModeSets { get; set; }
-        public DbSet<Entities.User> Users { get; set; }
+        public DbSet<Entity.Alert> Alerts { get; set; }
+        public DbSet<Entity.AlertSet> AlertSets { get; set; }
+        public DbSet<Entity.BirthdayUser> BirthdayUsers { get; set; }
+        public DbSet<Entity.BirthdayUserList> BirthdayUserLists { get; set; }
+        public DbSet<Entity.BirthdayUserListSet> BirthdayUserListSets { get; set; }
+        public DbSet<Entity.Desire> Desires { get; set; }
+        public DbSet<Entity.Hobbie> Hobbies { get; set; }
+        public DbSet<Entity.HobbieSet> HobbieSets { get; set; }
+        public DbSet<Entity.Log> Logs { get; set; }
+        public DbSet<Entity.Role> Roles { get; set; }
+        public DbSet<Entity.TimeMode> TimeModes { get; set; }
+        public DbSet<Entity.TimeModeSet> TimeModeSets { get; set; }
+        public DbSet<Entity.User> Users { get; set; }
 
         #endregion set DB entities
 

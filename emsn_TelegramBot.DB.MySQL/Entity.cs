@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace emsn_TelegramBot.DB.MySQL
 {
+
     /// <summary>
     /// Класс основных сущностей как предметной области бота так и системных
     /// </summary>
-    public class Entities
+    public class Entity
     {
 
         #region Основные сущности
@@ -22,12 +23,12 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор пользователя (в соответствии с Telegram API)
             /// </summary>
             [Key]
-            public int userID { get; set; }
+            public long? userID { get; set; }
             /// <summary>
             /// Код авторизации от бота
             /// </summary>
             [Required]
-            public string authCode { get; set; }
+            public string? authCode { get; set; }
             /// <summary>
             /// Роль пользователя с точки зрения функционала
             /// </summary>
@@ -45,7 +46,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор именинника
             /// </summary>
             [Key]
-            public int birthdayUserID { get; set; }
+            public int? birthdayUserID { get; set; }
             /// <summary>
             /// Идентификатор пользователя Telegram (если существует)
             /// </summary>
@@ -54,12 +55,12 @@ namespace emsn_TelegramBot.DB.MySQL
             /// ФИО или понятное пользователю имя именинника
             /// </summary>
             [Required, MaxLength(100)]
-            public string strongName { get; set; }
+            public string? strongName { get; set; }
             /// <summary>
             /// Дата рождения (ДД\ММ\ГГГГ или ДД\ММ)
             /// </summary>
             [Required, Timestamp]
-            public DateTime dateOfBirth { get; set; }
+            public DateTime? dateOfBirth { get; set; }
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор списка именинников
             /// </summary>
             [Key]
-            public int birthdayUserListID { get; set; }
+            public int? birthdayUserListID { get; set; }
             /// <summary>
             /// Идентификатор имменинника
             /// </summary>
@@ -82,7 +83,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Наименование списка
             /// </summary>
             [Required, MaxLength(30)]
-            public string name { get; set; }
+            public string? name { get; set; }
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор набора списков именинников
             /// </summary>
             [Key]
-            public int birthdayUserListSetID { get; set; }
+            public int? birthdayUserListSetID { get; set; }
             /// <summary>
             /// Идентификатор списка именинников
             /// </summary>
@@ -121,7 +122,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор оповещения
             /// </summary>
             [Key]
-            public int alertSetID { get; set; }
+            public int? alertSetID { get; set; }
             /// <summary>
             /// Пользователь, привязанный к оповещению
             /// </summary>
@@ -138,18 +139,18 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Указание об оповещении конкретного чата данными из конкретного списка или набора списков
         /// </summary>
         [Table("alert")]
-        public class Alert
+        public class Alert : IQueryable
         {
             /// <summary>
             /// Идентификатор оповещения
             /// </summary>
             [Key]
-            public int alertID { get; set; }
+            public int? alertID { get; set; }
             /// <summary>
             /// Чат, который планируется оповещать
             /// </summary>
             [Required]
-            public int chatID { get; set; }
+            public long? chatID { get; set; }
             /// <summary>
             /// Набор списков пользователей, проверяемых при определении списка именинников
             /// </summary>
@@ -158,6 +159,8 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Список пользователей, проверяемых при определении списка именинников
             /// </summary>
             public BirthdayUserList birthdayUserList { get; set; }
+
+            public Alert() { }
         }
 
         #endregion Оповещения
@@ -265,27 +268,27 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор именинника (пользователя бота)
             /// </summary>
             [Key]
-            public int birthdayUserID { get ; set; }
+            public int? birthdayUserID { get ; set; }
             [ForeignKey("birthdayUserID")]
             public BirthdayUser BirthdayUser { get; set; }
             /// <summary>
             /// Название желания
             /// </summary>
             [Required, MaxLength(100)]
-            public string name { get; set; }
+            public string? name { get; set; }
             /// <summary>
             /// Описание желания
             /// </summary>
-            public string description { get; set; }
+            public string? description { get; set; }
             /// <summary>
             /// Ссылка товар/услугу (при наличи)
             /// </summary>
             [Url]
-            public string url { get; set; }
+            public string? url { get; set; }
             /// <summary>
             /// Цена (при наличии)
             /// </summary>
-            public int price { get; set; }
+            public int? price { get; set; }
         }
 
         /// <summary>
@@ -298,17 +301,17 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор хобби
             /// </summary>
             [Key]
-            public int hobbieID { get; set; }
+            public int? hobbieID { get; set; }
             /// <summary>
             /// Наименование хобби
             /// </summary>
             [Required, MaxLength(300)]
-            public string name { get; set; }
+            public string? name { get; set; }
             /// <summary>
             /// Популярность хобби (0-100% или место в статистике-отчете)
             /// </summary>
             [Required]
-            public byte popularity { get; set; }
+            public byte? popularity { get; set; }
         }
 
         /// <summary>
@@ -321,7 +324,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор именинника (или пользователя бота), привязанного к хобби
             /// </summary>
             [Key]
-            public int hobbieSetID { get; set; }
+            public int? hobbieSetID { get; set; }
             [ForeignKey("hobbieSetID")]
             public BirthdayUser BirthdayUser { get; set; }
             /// <summary>

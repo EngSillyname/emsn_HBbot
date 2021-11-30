@@ -1,8 +1,6 @@
 ﻿using emsn_TelegramBot.DB.MySQL;
-using emsn_TelegramBot.Statistics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Telegram.Bot;
 
@@ -10,16 +8,12 @@ namespace emsn_TelegramBot
 {
     class Bot
     {
-        
         static string API_TOKEN = Environment.GetEnvironmentVariable("API_TOKEN");
         static ITelegramBotClient botClient;
         static void Main(string[] args)
         {
             //Инициализация БД
-            using (DataBaseConfig db = new DataBaseConfig())
-            {
-                db.SaveChanges();
-            }
+            Query.InitializationDB();
 
             //Подключение к боту по токену
             botClient = new TelegramBotClient(API_TOKEN);
@@ -33,7 +27,6 @@ namespace emsn_TelegramBot
             botClient.OnMessage += BotClient_OnMessage;
 
             //Запуск
-
             BotResources.loadStructures();
             botClient.StartReceiving();
 
@@ -66,18 +59,7 @@ namespace emsn_TelegramBot
                 {
                     case "start":
                         {
-                            using(DataBaseConfig dataBase = new DataBaseConfig())
-                            {
-                                if (dataBase.Users.ToList().Any(user => user.userID == e.Message.Chat.Id))
-                                    ShortMessage.Send(e.Message.Chat.Id, "Здравствуйте, " + e.Message.From.Username);
-                                else
-                                {
-                                    ShortMessage.Send(e.Message.Chat.Id, "Здравствуйте, " + e.Message.From.Username);
-                                    ShortMessage.Send(e.Message.Chat.Id, BotResources.Strings["start"][new BotResources().Strings["start"].Count + 1]);
-                                }
-                                    
 
-                            }
                         }
                         break;
                     default:
