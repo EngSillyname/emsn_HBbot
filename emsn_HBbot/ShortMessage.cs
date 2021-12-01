@@ -5,19 +5,19 @@ namespace emsn_TelegramBot
 {
     class ShortMessage
     {
-        public static ITelegramBotClient Bot;
+        public static ITelegramBotClient bot;
         public ShortMessage()
         {
 
         }
-        public ShortMessage(ITelegramBotClient bot)
+        public ShortMessage(ITelegramBotClient Bot)
         {
-            Bot = bot;
+            bot = Bot;
         }
 
         public static void Send(long chatId, string text, IReplyMarkup markup = null)
         {
-            Bot.SendTextMessageAsync
+            bot.SendTextMessageAsync
             (
                 chatId: chatId,
                 parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown,
@@ -27,7 +27,7 @@ namespace emsn_TelegramBot
         }
         public static void Edit(long chatId, int messageId, string text)
         {
-            Bot.EditMessageTextAsync
+            bot.EditMessageTextAsync
             (
                 chatId: chatId,
                 messageId: messageId,

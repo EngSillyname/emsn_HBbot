@@ -1,4 +1,7 @@
-﻿namespace emsn_TelegramBot.DB.MySQL
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace emsn_TelegramBot.DB.MySQL
 {
     /// <summary>
     /// Интерфейс, означающий, что указанная сущность пригодна для выполнения запросов к БД
@@ -14,11 +17,17 @@
         /// <summary>
         /// Возможные типы запросов для сущностей бота
         /// </summary>
-        public enum QueryType
+        public enum ItemQueryType
         {
             Add,
             Edit,
             Delete
+        }
+
+        public enum CheckQueryType
+        {
+            User,
+            Active
         }
 
         /// <summary>
@@ -26,18 +35,31 @@
         /// </summary>
         /// <param name="queryableEntity">Сущность, чьи данные будут использоваться в запросе</param>
         /// <param name="queryType">Тип запроса</param>
-        public static void Item(IQueryable queryableEntity, QueryType queryType)
+        public static void Item(IQueryable queryableEntity, ItemQueryType queryType)
         {
             using (DataBaseConfig config = new DataBaseConfig())
             {
                 switch (queryType)
                 {
-                    case QueryType.Add: config.Add(queryableEntity); break;
-                    case QueryType.Edit: config.Update(queryableEntity); break;
-                    case QueryType.Delete: config.Remove(queryableEntity); break;
+                    case ItemQueryType.Add: config.Add(queryableEntity); break;
+                    case ItemQueryType.Edit: config.Update(queryableEntity); break;
+                    case ItemQueryType.Delete: config.Remove(queryableEntity); break;
                 }
 
                 config.SaveChanges();
+            }
+        }
+
+        public static bool Check(CheckQueryType queryType, long idItem)
+        {
+            using(DataBaseConfig config = new DataBaseConfig())
+            {
+                switch (queryType)
+                {
+                    case CheckQueryType.User: return config.Users.Any(user => user.userID == idItem);
+                    case CheckQueryType.Active: return config.Users.Any(user => (user.userID == idItem) && user.userIsActive);
+                    default: return false;
+                }
             }
         }
 

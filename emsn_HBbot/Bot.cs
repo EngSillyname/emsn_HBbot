@@ -18,7 +18,7 @@ namespace emsn_TelegramBot
             //Подключение к боту по токену
             botClient = new TelegramBotClient(API_TOKEN);
             var me = botClient.GetMeAsync().Result;
-            ShortMessage.Bot = botClient;
+            
 
             //Приветственное сообщение о запусек бота
             Console.WriteLine($"Привет! Бот с id {me.Id} под именем {me.FirstName} успешно запущен!");
@@ -26,17 +26,20 @@ namespace emsn_TelegramBot
             //Добавление обрабатываемых событий
             botClient.OnMessage += BotClient_OnMessage;
 
-            //Запуск
-            BotResources.loadStructures();
+            //Запуск загрузки ресурсов и внутренних классов и самого бота
+            BotResources.LoadStructures();
+            ShortMessage.bot = botClient;
             botClient.StartReceiving();
 
             //Простой работы
+            //Пока сделано через обычное консольное приложение, после первого релиза планируется преобразование в службу Windows
             Thread.Sleep(int.MaxValue);
         }
 
         static void BotClient_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)
         {
             //Парсинг сообщения
+            //TODO [общий рефакторинг вступительной части метода]
             string resultText = "";
             List<char> textMessage = new List<char>(e.Message.Text.ToCharArray());
             if (textMessage.FindIndex(x => x == '@') != -1)
@@ -53,13 +56,22 @@ namespace emsn_TelegramBot
             }
 
             //Список команд
+            //TODO [resultText.StartWith('/')]
             if (resultText[0] == '/')
             {
                 switch (resultText.ToLower().Trim(new char[] { ' ', '/' }))
                 {
-                    case "start":
+                    case "start": //UML Activity 6.1
                         {
-
+                            if(Query.Check(Query.CheckQueryType.User, e.Message.From.Id))
+                            {
+                                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserTrue"));
+                                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("getAuthCode"));
+                            }
+                            else
+                            {
+                                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserFalse"));
+                            }
                         }
                         break;
                     default:

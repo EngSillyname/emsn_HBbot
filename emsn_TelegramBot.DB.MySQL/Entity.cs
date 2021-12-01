@@ -34,6 +34,11 @@ namespace emsn_TelegramBot.DB.MySQL
             /// </summary>
             [Required]
             public Role role { get; set; }
+            /// <summary>
+            /// Флаг входа пользователя в систему
+            /// </summary>
+            [Required]
+            public bool userIsActive { get; set; }
         }
 
         /// <summary>
