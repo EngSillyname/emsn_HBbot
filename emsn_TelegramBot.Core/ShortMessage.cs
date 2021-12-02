@@ -3,7 +3,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace emsn_TelegramBot
 {
-    class ShortMessage
+    public class ShortMessage
     {
         public static ITelegramBotClient bot;
         public ShortMessage()

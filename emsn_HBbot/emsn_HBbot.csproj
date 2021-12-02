@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\emsn_TelegramBot.Actions\emsn_TelegramBot.Actions.csproj" />
+    <ProjectReference Include="..\emsn_TelegramBot.Core\emsn_TelegramBot.Common.csproj" />
     <ProjectReference Include="..\emsn_TelegramBot.DB.MySQL\emsn_TelegramBot.DB.MySQL.csproj" />
     <ProjectReference Include="..\emsn_TelegramBot.RoleModel\emsn_TelegramBot.RoleModel.csproj" />
     <ProjectReference Include="..\emsn_TelegramBot.Services\emsn_TelegramBot.Services.csproj" />

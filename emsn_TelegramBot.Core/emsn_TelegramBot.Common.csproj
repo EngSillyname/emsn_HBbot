@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\emsn_TelegramBot.Core\emsn_TelegramBot.Common.csproj" />
+    <PackageReference Include="Telegram.Bot" Version="16.0.1" />
   </ItemGroup>
 
 </Project>
