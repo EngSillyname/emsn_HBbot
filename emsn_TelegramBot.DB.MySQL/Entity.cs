@@ -17,7 +17,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Пользователь бота
         /// </summary>
         [Table("user")]
-        public class User
+        public class User : IQueryable
         {
             /// <summary>
             /// Идентификатор пользователя (в соответствии с Telegram API)
@@ -45,7 +45,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Именинник
         /// </summary>
         [Table("birthday_user")]
-        public class BirthdayUser
+        public class BirthdayUser : IQueryable
         {
             /// <summary>
             /// Идентификатор именинника
@@ -72,7 +72,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Список именинников
         /// </summary>
         [Table("birthday_user_list")]
-        public class BirthdayUserList
+        public class BirthdayUserList : IQueryable
         {
             /// <summary>
             /// Идентификатор списка именинников
@@ -95,7 +95,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Набор списков именинников, привязанных к пользователю
         /// </summary>
         [Table("birthday_user_list_set")]
-        public class BirthdayUserListSet
+        public class BirthdayUserListSet : IQueryable
         {
             /// <summary>
             /// Идентификатор набора списков именинников
@@ -121,7 +121,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Набор оповещений для пользователя 
         /// </summary>
         [Table("alert_set")]
-        public class AlertSet
+        public class AlertSet : IQueryable
         {
             /// <summary>
             /// Идентификатор оповещения
@@ -176,7 +176,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Роль пользователя в соответствии с ролевой моделью
         /// </summary>
         [Table("role")]
-        public class Role
+        public class Role : IQueryable
         {
             /// <summary>
             /// Наименование роли пользователя в системе
@@ -189,7 +189,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Временной интервал цикла оповещений
         /// </summary>
         [Table("time_mode")]
-        public class TimeMode
+        public class TimeMode : IQueryable
         {
             /// <summary>
             /// Идентификатор интервала
@@ -212,7 +212,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Набор временных интервалов, привязанных к оповещениям
         /// </summary>
         [Table("time_mode_set")]
-        public class TimeModeSet
+        public class TimeModeSet : IQueryable
         {
             /// <summary>
             /// Оповещение, привязанное к временному интервалу
@@ -232,7 +232,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Лог действий пользователей бота (для сбора и анализа статистики)
         /// </summary>
         [Table("log")]
-        public class Log
+        public class Log : IQueryable
         {
             /// <summary>
             /// Идентификатор записи лога
@@ -267,7 +267,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Желание именинника
         /// </summary>
         [Table("desire")]
-        public class Desire
+        public class Desire : IQueryable
         {
             /// <summary>
             /// Идентификатор именинника (пользователя бота)
@@ -300,7 +300,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Хобби именинника
         /// </summary>
         [Table("hobbie")]
-        public class Hobbie
+        public class Hobbie : IQueryable
         {
             /// <summary>
             /// Идентификатор хобби
@@ -323,7 +323,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// Набор хобби, привязанных к имениннику
         /// </summary>
         [Table("hobbie_set")]
-        public class HobbieSet
+        public class HobbieSet : IQueryable
         {
             /// <summary>
             /// Идентификатор именинника (или пользователя бота), привязанного к хобби

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\emsn_TelegramBot.Core\emsn_TelegramBot.Common.csproj" />
+    <ProjectReference Include="..\emsn_TelegramBot.DB.MySQL\emsn_TelegramBot.DB.MySQL.csproj" />
   </ItemGroup>
 
 </Project>

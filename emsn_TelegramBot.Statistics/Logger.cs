@@ -10,7 +10,7 @@ namespace emsn_TelegramBot.Statistics
 {
     public class Logger : Entity.Log
     {
-        public static bool Add(string actionName, string difference = null, User user = null)
+        public static bool Add(string actionName, string difference = null, Entity.User user = null)
         {
             return false;
         }
