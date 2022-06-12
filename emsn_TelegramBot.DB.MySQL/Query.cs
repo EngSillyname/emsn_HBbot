@@ -70,5 +70,13 @@ namespace emsn_TelegramBot.DB.MySQL
                 config.SaveChanges();
             }
         }
+
+        public static object GetUser(long idItem)
+        {
+            using (DataBaseConfig config = new DataBaseConfig())
+            {
+                return config.Users.ToList().Find(user => user.userID == idItem);
+            }
+        }
     }
 }

@@ -1,0 +1,10 @@
+{
+  "load": {
+    "inline_keyboard": [
+      [
+        { "text": "Привет", "CallbackData": "ОК" },
+        { "text": "Привет" }
+      ]
+    ]
+  }
+}

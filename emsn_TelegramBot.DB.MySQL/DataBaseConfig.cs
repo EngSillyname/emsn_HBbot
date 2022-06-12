@@ -30,14 +30,14 @@ namespace emsn_TelegramBot.DB.MySQL
 
         public DataBaseConfig()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //В БУДУЩЕМ (подгрузка конфига из Json)
-            optionsBuilder.UseMySql(CONNECTION_STRING, new MySqlServerVersion(new Version(8, 0, 25)));
+            optionsBuilder.UseMySql(CONNECTION_STRING, new MySqlServerVersion(new Version(8, 0, 29)));
         }
 
         #endregion Create and Config DB

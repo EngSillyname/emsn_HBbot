@@ -31,7 +31,7 @@ namespace emsn_TelegramBot
         public static void LoadStructures()
         {
             Strings = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(System.IO.File.ReadAllText(@"Strings.json"));
-            ReplyKeyboards = JsonConvert.DeserializeObject<Dictionary<string, ReplyKeyboardMarkup>>(System.IO.File.ReadAllText(@"Keyboards.json"));
+            //ReplyKeyboards = JsonConvert.DeserializeObject<Dictionary<string, ReplyKeyboardMarkup>>(System.IO.File.ReadAllText(@"Keyboards.json"));
         }
 
         public static string GetString(string situationName)

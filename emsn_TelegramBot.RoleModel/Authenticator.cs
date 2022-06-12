@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace emsn_TelegramBot.RoleModel
 {
-    class Authenticator
+    public class Authenticator
     {
         #region Управление сессиями
         

@@ -23,7 +23,7 @@ namespace emsn_TelegramBot.DB.MySQL
             /// Идентификатор пользователя (в соответствии с Telegram API)
             /// </summary>
             [Key]
-            public long? userID { get; set; }
+            public long userID { get; set; }
             /// <summary>
             /// Код авторизации от бота
             /// </summary>

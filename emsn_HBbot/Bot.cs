@@ -1,4 +1,5 @@
 ﻿using emsn_TelegramBot.DB.MySQL;
+using emsn_TelegramBot.RoleModel;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -38,6 +39,29 @@ namespace emsn_TelegramBot
 
         static void BotClient_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)
         {
+            #region Пользовательская сессия
+
+            //Базовая проверка наличия пользователя в системе и наличия у пользователя активной сессии
+            if (Query.Check(Query.CheckQueryType.User, e.Message.From.Id))
+            {
+                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserTrue"));
+                if (!Authenticator.Session(Query.GetUser(e.Message.From.Id), Authenticator.Mode.Check))
+                {
+                    ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("getAuthCode"));
+                    return;
+                }
+                    
+            }
+            else
+            {
+                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserFalse"));
+                return;
+            }
+
+            #endregion Пользовательская сессия
+
+            #region Команды
+
             //Парсинг сообщения
             //TODO [общий рефакторинг вступительной части метода]
             string resultText = "";
@@ -61,17 +85,9 @@ namespace emsn_TelegramBot
             {
                 switch (resultText.ToLower().Trim(new char[] { ' ', '/' }))
                 {
-                    case "start": //UML Activity 6.1
+                    case "start": 
                         {
-                            if(Query.Check(Query.CheckQueryType.User, e.Message.From.Id))
-                            {
-                                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserTrue"));
-                                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("getAuthCode"));
-                            }
-                            else
-                            {
-                                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserFalse"));
-                            }
+                            
                         }
                         break;
                     default:
@@ -81,6 +97,8 @@ namespace emsn_TelegramBot
                         break;
                 }
             }
+
+            #endregion Команды
         }
     }
 }
