@@ -34,6 +34,11 @@ namespace emsn_TelegramBot
             //ReplyKeyboards = JsonConvert.DeserializeObject<Dictionary<string, ReplyKeyboardMarkup>>(System.IO.File.ReadAllText(@"Keyboards.json"));
         }
 
+        /// <summary>
+        /// Возможные состояния команд
+        /// </summary>
+        public enum commandState { start }
+
         public static string GetString(string situationName)
         {
             return Strings[situationName][new Random().Next(Strings[situationName].Count)];
