@@ -23,6 +23,7 @@ namespace emsn_TelegramBot.DB.MySQL
         public DbSet<Entity.TimeMode> TimeModes { get; set; }
         public DbSet<Entity.TimeModeSet> TimeModeSets { get; set; }
         public DbSet<Entity.User> Users { get; set; }
+        public DbSet<Entity.CommandState> CommandStates { get; set; }
 
         #endregion set DB entities
 

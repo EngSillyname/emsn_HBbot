@@ -31,7 +31,7 @@ namespace emsn_TelegramBot
             BotResources.LoadStructures();
             ShortMessage.bot = botClient;
             botClient.StartReceiving();
-
+            
             //Простой работы
             //Пока сделано через обычное консольное приложение, после первого релиза планируется преобразование в службу Windows
             Thread.Sleep(int.MaxValue);
@@ -42,20 +42,21 @@ namespace emsn_TelegramBot
             #region Пользовательская сессия
 
             //Базовая проверка наличия пользователя в системе и наличия у пользователя активной сессии
-            if (Query.Check(Query.CheckQueryType.User, e.Message.From.Id))
+            if (!Query.Check(Query.CheckQueryType.User, e.Message.From.Id))
+            {
+                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserFalse"));
+                return;
+            }
+            else
             {
                 ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserTrue"));
                 if (!Authenticator.Session(Query.GetUser(e.Message.From.Id), Authenticator.Mode.Check))
                 {
                     ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("getAuthCode"));
                     return;
-                }
                     
-            }
-            else
-            {
-                ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("checkUserFalse"));
-                return;
+                }
+
             }
 
             #endregion Пользовательская сессия

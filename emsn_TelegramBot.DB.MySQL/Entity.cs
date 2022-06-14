@@ -259,6 +259,34 @@ namespace emsn_TelegramBot.DB.MySQL
             public User user { get; set; }
         }
 
+        /// <summary>
+        /// Последняя команда, введенная пользователем и её состояние
+        /// </summary>
+        [Table("commandState")]
+        public class CommandState : IQueryable
+        {
+            /// <summary>
+            /// Идентификатор состояния команды
+            /// </summary>
+            [Key]
+            public UInt64 commandStateID { get; set; }
+            /// <summary>
+            /// Идентификатор пользователя Telegram
+            /// </summary>
+            [Required]
+            public User user { get; set; }
+            /// <summary>
+            /// Идентификатор последней команды
+            /// </summary>
+            [Required]
+            public byte lastCommandID { get; set; }
+            /// <summary>
+            /// Идентификатор состояния последней команды
+            /// </summary>
+            [Required]
+            public byte lastCommandStateID { get; set; }
+        }
+
         #endregion Технические и системные параметры
 
         #region Для именинника
