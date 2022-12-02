@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Telegram.Bot.Types.ReplyMarkups;
 
 namespace emsn_TelegramBot
@@ -20,9 +18,7 @@ namespace emsn_TelegramBot
         /// </summary>
         private static Dictionary<string, ReplyKeyboardMarkup> ReplyKeyboards = new();
 
-        public BotResources()
-        {
-        }
+        public BotResources() { }
 
 
         /// <summary>
@@ -33,11 +29,6 @@ namespace emsn_TelegramBot
             Strings = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(System.IO.File.ReadAllText(@"Strings.json"));
             //ReplyKeyboards = JsonConvert.DeserializeObject<Dictionary<string, ReplyKeyboardMarkup>>(System.IO.File.ReadAllText(@"Keyboards.json"));
         }
-
-        /// <summary>
-        /// Возможные состояния команд
-        /// </summary>
-        public enum commandState { start }
 
         public static string GetString(string situationName)
         {

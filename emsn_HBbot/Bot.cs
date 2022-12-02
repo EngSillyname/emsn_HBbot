@@ -54,7 +54,6 @@ namespace emsn_TelegramBot
                 {
                     ShortMessage.Send(e.Message.Chat.Id, BotResources.GetString("getAuthCode"));
                     return;
-                    
                 }
 
             }
@@ -66,7 +65,7 @@ namespace emsn_TelegramBot
             //Парсинг сообщения
             //TODO [общий рефакторинг вступительной части метода]
             string resultText = "";
-            List<char> textMessage = new List<char>(e.Message.Text.ToCharArray());
+            List<char> textMessage = new(e.Message.Text.ToCharArray());
             if (textMessage.FindIndex(x => x == '@') != -1)
             {
                 textMessage.RemoveRange(textMessage.FindIndex(x => x == '@'), textMessage.Count - textMessage.FindIndex(x => x == '@'));

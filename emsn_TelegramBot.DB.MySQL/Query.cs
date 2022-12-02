@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace emsn_TelegramBot.DB.MySQL
 {
@@ -37,7 +36,7 @@ namespace emsn_TelegramBot.DB.MySQL
         /// <param name="queryType">Тип запроса</param>
         public static void Item(IQueryable queryableEntity, ItemQueryType queryType)
         {
-            using (DataBaseConfig config = new DataBaseConfig())
+            using (DataBaseConfig config = new())
             {
                 switch (queryType)
                 {
@@ -52,12 +51,13 @@ namespace emsn_TelegramBot.DB.MySQL
 
         public static bool Check(CheckQueryType queryType, long idItem)
         {
-            using(DataBaseConfig config = new DataBaseConfig())
+            using(DataBaseConfig config = new())
             {
                 switch (queryType)
                 {
                     case CheckQueryType.User: return config.Users.Any(user => user.userID == idItem);
                     case CheckQueryType.Active: return config.Users.Any(user => (user.userID == idItem) && user.userIsActive);
+
                     default: return false;
                 }
             }
@@ -65,7 +65,7 @@ namespace emsn_TelegramBot.DB.MySQL
 
         public static void InitializationDB()
         {
-            using (DataBaseConfig config = new DataBaseConfig())
+            using (DataBaseConfig config = new())
             {
                 config.SaveChanges();
             }
@@ -73,10 +73,11 @@ namespace emsn_TelegramBot.DB.MySQL
 
         public static object GetUser(long idItem)
         {
-            using (DataBaseConfig config = new DataBaseConfig())
+            using (DataBaseConfig config = new())
             {
                 return config.Users.ToList().Find(user => user.userID == idItem);
             }
         }
+
     }
 }
